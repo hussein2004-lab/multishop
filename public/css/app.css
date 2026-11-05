@@ -1,0 +1,295 @@
+/* ============================================================
+   MultiShop — Feuille de style principale
+   Thèmes : clair (défaut), sombre, sépia, gris clair
+   ============================================================ */
+
+/* ----------------------------- Thèmes ----------------------------- */
+
+:root,
+body[data-theme="light"] {
+    --ms-bg: #f5f7fb;
+    --ms-surface: #ffffff;
+    --ms-surface-2: #eef2f8;
+    --ms-text: #1c2533;
+    --ms-muted: #5b6878;
+    --ms-border: rgba(28, 37, 51, .1);
+    --ms-primary: #1565d8;
+    --ms-primary-dark: #0d3f8f;
+    --ms-hero: linear-gradient(135deg, #e8f0fe 0%, #f5f7fb 60%, #dbeafe 100%);
+}
+
+body[data-theme="dark"] {
+    --ms-bg: #10151f;
+    --ms-surface: #1a2230;
+    --ms-surface-2: #222c3d;
+    --ms-text: #e8edf5;
+    --ms-muted: #9aa7ba;
+    --ms-border: rgba(232, 237, 245, .12);
+    --ms-primary: #4a8df0;
+    --ms-primary-dark: #1565d8;
+    --ms-hero: linear-gradient(135deg, #16203200 0%, #10151f 55%, #14274a 100%);
+}
+
+body[data-theme="sepia"] {
+    --ms-bg: #f4ecdd;
+    --ms-surface: #fbf5e9;
+    --ms-surface-2: #efe5d0;
+    --ms-text: #433422;
+    --ms-muted: #7a6a52;
+    --ms-border: rgba(67, 52, 34, .15);
+    --ms-primary: #8c5e2a;
+    --ms-primary-dark: #6b4419;
+    --ms-hero: linear-gradient(135deg, #efe2c8 0%, #f4ecdd 60%, #e9d9b8 100%);
+}
+
+body[data-theme="gray"] {
+    --ms-bg: #e8eaed;
+    --ms-surface: #f4f5f7;
+    --ms-surface-2: #dde0e4;
+    --ms-text: #2b3036;
+    --ms-muted: #62696f;
+    --ms-border: rgba(43, 48, 54, .14);
+    --ms-primary: #45525f;
+    --ms-primary-dark: #2e3942;
+    --ms-hero: linear-gradient(135deg, #dfe2e6 0%, #e8eaed 60%, #d3d8dd 100%);
+}
+
+/* ----------------------------- Base ----------------------------- */
+
+body {
+    background-color: var(--ms-bg);
+    color: var(--ms-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ms-main { flex: 1 0 auto; }
+
+a { color: var(--ms-primary); }
+a:hover { color: var(--ms-primary-dark); }
+
+/* Adapter les composants Bootstrap aux thèmes */
+.card, .dropdown-menu, .modal-content, .list-group-item {
+    background-color: var(--ms-surface);
+    color: var(--ms-text);
+    border-color: var(--ms-border);
+}
+
+.card-header, .card-footer { border-color: var(--ms-border); }
+
+.table { color: var(--ms-text); --bs-table-bg: transparent; --bs-table-color: var(--ms-text); }
+.table > :not(caption) > * > * { border-color: var(--ms-border); }
+
+body[data-theme="sepia"] .form-control, body[data-theme="sepia"] .form-select,
+body[data-theme="gray"] .form-control, body[data-theme="gray"] .form-select,
+body[data-theme="sepia"] .input-group-text, body[data-theme="gray"] .input-group-text {
+    background-color: var(--ms-surface);
+    color: var(--ms-text);
+    border-color: var(--ms-border);
+}
+
+.form-control::placeholder { color: var(--ms-muted); opacity: .7; }
+
+.breadcrumb-item.active { color: var(--ms-muted); }
+
+/* Couleur principale (bleu logo MultiShop, adoucie selon le thème) */
+.btn-primary {
+    --bs-btn-bg: var(--ms-primary);
+    --bs-btn-border-color: var(--ms-primary);
+    --bs-btn-hover-bg: var(--ms-primary-dark);
+    --bs-btn-hover-border-color: var(--ms-primary-dark);
+    --bs-btn-active-bg: var(--ms-primary-dark);
+    --bs-btn-active-border-color: var(--ms-primary-dark);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--ms-primary);
+    --bs-btn-border-color: var(--ms-primary);
+    --bs-btn-hover-bg: var(--ms-primary);
+    --bs-btn-hover-border-color: var(--ms-primary);
+    --bs-btn-active-bg: var(--ms-primary);
+    --bs-btn-active-border-color: var(--ms-primary);
+}
+
+.text-primary { color: var(--ms-primary) !important; }
+.bg-primary { background-color: var(--ms-primary) !important; }
+
+.nav-pills .nav-link { color: var(--ms-text); }
+.nav-pills .nav-link.active { background-color: var(--ms-primary); color: #fff; }
+
+.page-link { color: var(--ms-primary); background-color: var(--ms-surface); border-color: var(--ms-border); }
+.page-item.active .page-link { background-color: var(--ms-primary); border-color: var(--ms-primary); color: #fff; }
+
+/* ----------------------------- Navbar & footer ----------------------------- */
+
+.ms-navbar {
+    background-color: var(--ms-surface);
+    border-bottom: 1px solid var(--ms-border);
+}
+
+.ms-navbar .nav-link { color: var(--ms-text); }
+.ms-navbar .nav-link.active { color: var(--ms-primary); font-weight: 600; }
+
+.ms-logo { height: 42px; width: 42px; object-fit: cover; border-radius: 10px; }
+
+.ms-brand-text { color: var(--ms-text); font-size: 1.15rem; }
+
+.ms-footer {
+    background-color: var(--ms-surface);
+    border-top: 1px solid var(--ms-border);
+    color: var(--ms-text);
+}
+.ms-footer a { color: var(--ms-muted); text-decoration: none; }
+.ms-footer a:hover { color: var(--ms-primary); }
+
+.ms-avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--ms-primary); color: #fff; font-weight: 700; font-size: .9rem;
+}
+
+/* Pastilles des thèmes */
+.ms-theme-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid var(--ms-border); }
+.ms-theme-dot-light { background: #f5f7fb; }
+.ms-theme-dot-dark { background: #10151f; }
+.ms-theme-dot-sepia { background: #f4ecdd; }
+.ms-theme-dot-gray { background: #b9bfc7; }
+
+/* ----------------------------- Accueil ----------------------------- */
+
+.ms-hero { background: var(--ms-hero); border-bottom: 1px solid var(--ms-border); }
+
+.ms-hero-logo { max-height: 280px; border-radius: 24px; box-shadow: 0 24px 60px rgba(13, 63, 143, .25); }
+
+.ms-cat-chip { border-color: var(--ms-border); color: var(--ms-text); }
+.ms-cat-chip:hover { background: var(--ms-primary); border-color: var(--ms-primary); color: #fff; }
+
+.ms-step-icon {
+    width: 64px; height: 64px; margin-inline: auto;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 18px; font-size: 1.6rem;
+    background: var(--ms-surface-2); color: var(--ms-primary);
+}
+
+.ms-cta-seller {
+    background: linear-gradient(135deg, var(--ms-primary) 0%, var(--ms-primary-dark) 100%);
+    color: #fff;
+}
+
+/* ----------------------------- Produits & boutiques ----------------------------- */
+
+.ms-product-card, .ms-shop-card { transition: transform .2s ease, box-shadow .2s ease; }
+.ms-product-card:hover, .ms-shop-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 0, 0, .12) !important; }
+
+.ms-product-img-wrap { background: var(--ms-surface-2); }
+.ms-product-img { aspect-ratio: 1 / 1; object-fit: cover; }
+.ms-product-img-lg { aspect-ratio: 1 / 1; object-fit: cover; }
+
+.ms-product-title h6 { color: var(--ms-text); }
+.ms-shop-link { color: var(--ms-muted); max-width: 55%; }
+
+.text-truncate-2 {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.min-w-0 { min-width: 0; }
+
+.ms-shop-avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--ms-primary), var(--ms-primary-dark));
+    color: #fff; font-weight: 800; font-size: 1.3rem;
+}
+.ms-shop-avatar-lg { width: 76px; height: 76px; font-size: 2rem; border-radius: 20px; }
+
+.ms-reliability { font-size: .72rem; }
+
+/* ----------------------------- Panier & commande ----------------------------- */
+
+.ms-cart-thumb { width: 64px; height: 64px; object-fit: cover; flex-shrink: 0; }
+.ms-table-thumb { width: 46px; height: 46px; object-fit: cover; }
+.ms-table-thumb-lg { width: 120px; height: 120px; object-fit: cover; }
+
+.ms-cart-row:last-child { border-bottom: 0 !important; }
+
+.ms-summary-card { position: sticky; top: 90px; }
+
+.ms-map { height: 320px; width: 100%; z-index: 0; }
+.ms-map-sm { height: 220px; width: 100%; z-index: 0; }
+
+.ms-pay-option { border-style: dashed; }
+.btn-check:checked + .ms-pay-option { border-style: solid; border-width: 2px; }
+
+.ms-otp-input { letter-spacing: .6em; }
+
+/* Animation du succès */
+.ms-success-check {
+    width: 88px; height: 88px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: #19875422; color: #198754; font-size: 2.6rem;
+    border: 3px solid #198754;
+}
+
+/* Timeline de commande */
+.ms-timeline { display: flex; justify-content: space-between; position: relative; }
+.ms-timeline::before {
+    content: ""; position: absolute; top: 22px; left: 8%; right: 8%;
+    height: 3px; background: var(--ms-border); z-index: 0;
+}
+.ms-timeline-step { text-align: center; position: relative; z-index: 1; flex: 1; color: var(--ms-muted); }
+.ms-timeline-dot {
+    width: 44px; height: 44px; margin: 0 auto 6px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ms-surface); border: 2px solid var(--ms-border); font-size: 1.1rem;
+}
+.ms-timeline-step.done { color: var(--ms-primary); font-weight: 600; }
+.ms-timeline-step.done .ms-timeline-dot { background: var(--ms-primary); border-color: var(--ms-primary); color: #fff; }
+
+/* Notation par étoiles (avis) */
+.ms-rating { display: inline-flex; flex-direction: row-reverse; gap: .35rem; font-size: 1.5rem; }
+.ms-rating input { display: none; }
+.ms-rating label { color: var(--ms-border); cursor: pointer; transition: color .15s; }
+.ms-rating label:hover, .ms-rating label:hover ~ label,
+.ms-rating input:checked ~ label { color: #ffc107; }
+
+/* ----------------------------- Assistant IA ----------------------------- */
+
+.ms-ai-avatar {
+    width: 72px; height: 72px; border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: #fff;
+    background: linear-gradient(135deg, #7048e8, var(--ms-primary));
+    box-shadow: 0 12px 30px rgba(112, 72, 232, .35);
+}
+.ms-ai-avatar-sm { width: 44px; height: 44px; border-radius: 14px; font-size: 1.2rem; }
+
+.ms-ai-bubble {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: 18px;
+    padding: 1rem 1.25rem;
+}
+
+.ms-ai-search .form-control { min-width: 220px; }
+
+/* ----------------------------- Tableaux de bord ----------------------------- */
+
+.ms-stat-card .ms-stat-value { font-size: 1.15rem; }
+
+.ms-referral-card { border-inline-start: 4px solid var(--ms-primary) !important; }
+
+/* ----------------------------- Divers ----------------------------- */
+
+.ms-cart-badge { font-size: .65rem; }
+
+.ms-wa-btn { flex-shrink: 0; }
+
+.ms-paypal-card { border-top: 4px solid #0070ba !important; }
+.ms-card-pay { border-top: 4px solid var(--ms-primary) !important; }
+
+/* Réduction des animations si l'utilisateur le préfère */
+@media (prefers-reduced-motion: reduce) {
+    .ms-product-card, .ms-shop-card { transition: none; }
+}
